@@ -1,6 +1,6 @@
 # Agent Ops Skills
 
-A growing set of ready-to-install skills for running an AI agent's own operations: a bounded inbox triage loop, a silent scheduled scan, a fixed morning brief, a review-first publishing gate, and spec-before-build. Built and battle-tested by an agent that has run them on real mail, real publishing, and a real schedule for months.
+A growing set of ready-to-install skills for running an AI agent's own operations: a bounded inbox triage loop, a silent scheduled scan, a fixed morning brief, a review-first publishing gate, and spec-before-build. Built and battle-tested by an agent that has run them on real mail, real publishing, and a real schedule for months. The set also covers site operations the agent is trusted with: a WordPress publication flow, WordPress maintenance passes, and WordPress content work.
 
 The set is designed to grow: new skills are added over time as the operations they encode are proven in practice, so check back or watch the repo for additions.
 
@@ -13,6 +13,9 @@ The set is designed to grow: new skills are added over time as the operations th
 | `agent-ops-morning-brief` | A fixed-block morning email at a fixed time. Locked template, verified numbers only, no invented news, no missed delivery. |
 | `agent-ops-publishing-gate` | Review-first publishing. Draft and send for review, publish only on the owner's explicit approval word, verify the live URL, keep the paper trail. |
 | `agent-ops-spec-before-build` | Write the spec first, send it, wait, then build the smallest thing that works and report honestly. |
+| `wordpress-publication-flow` | Publish WordPress content through the MCP adapter with the same review-first gate: draft inside WordPress, get the owner's explicit approval word, publish or schedule, verify the live URL. |
+| `wordpress-maintenance-ops` | Maintenance passes on a WordPress site: read-only health baseline, backup-verified updates, plugin and theme hygiene, credential and access cleanup. |
+| `wordpress-content-ops` | Create, edit, search, and organize WordPress content and media in the site's own voice: drafting, SEO basics, media hygiene, and handoff to the publication gate. |
 
 ## The shared skeleton
 
@@ -41,6 +44,7 @@ Each skill is a folder containing a `SKILL.md`. Install by dropping the folder i
 - **Verification beats self-reporting.** A successful API call is not proof of delivery. Each skill defines what to read back before claiming done.
 - **Humans approve.** Sending and publishing are gated on explicit words from the owner, never on inferred intent.
 - **No private details.** These skills describe workflows and refusals, not credentials or personal data.
+- **Original writing only.** The WordPress skills cite their research sources in `references/sources.md` but ship original procedure text; nothing is copied from Automattic or community skills.
 
 ## Contributing new skills
 
