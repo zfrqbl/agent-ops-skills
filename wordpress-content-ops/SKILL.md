@@ -1,9 +1,10 @@
 ---
 name: wordpress-content-ops
 description: "Use when creating, editing, searching, or organizing WordPress content and media."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
+compatibility: "WordPress 6.9+ (PHP 7.4+); agent with bash + node; MCP adapter or REST access."
 metadata:
   hermes:
     tags: [WordPress, Content, Editing, Media, SEO]
@@ -12,6 +13,12 @@ metadata:
 # WordPress Content Ops
 
 Create, edit, search, and organize WordPress content and media through the MCP adapter: writing, restructuring, media handling, and SEO basics, all in the site's own voice.
+
+## Prerequisites
+
+- A reachable WordPress site (6.9+) with the REST API enabled (default).
+- Access via the WordPress MCP adapter (`wp plugin install mcp-adapter --activate`), the REST API, or WP-CLI.
+- Credentials from the environment, never inline: `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` (or `WP_REST_USERNAME` / `WP_REST_PASSWORD`). Application passwords are secrets; never log or echo them.
 
 ## When to Use
 

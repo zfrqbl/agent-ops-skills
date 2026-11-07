@@ -1,9 +1,10 @@
 ---
 name: wordpress-publication-flow
 description: "Use when publishing WordPress content through an agent. Review-first, approval-gated."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
+compatibility: "WordPress 6.9+ (PHP 7.4+); agent with bash + node; MCP adapter, WP-CLI, or REST access."
 metadata:
   hermes:
     tags: [WordPress, Publishing, Approval, Review-First, MCP]
@@ -12,6 +13,12 @@ metadata:
 # WordPress Publication Flow
 
 Publish posts and pages on a WordPress site through the MCP adapter, with the same review-first gate the rest of this repo runs on: draft, send for review, publish only on the owner's explicit approval word, verify the live result.
+
+## Prerequisites
+
+- A reachable WordPress site (6.9+) with the REST API enabled (default).
+- Access via the WordPress MCP adapter (`wp plugin install mcp-adapter --activate`), WP-CLI, or the REST API.
+- Credentials from the environment, never inline: `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` (or `WP_REST_USERNAME` / `WP_REST_PASSWORD`). Application passwords are secrets; never log or echo them.
 
 ## When to Use
 

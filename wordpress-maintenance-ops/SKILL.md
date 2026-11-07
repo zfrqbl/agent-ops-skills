@@ -1,9 +1,10 @@
 ---
 name: wordpress-maintenance-ops
 description: "Use when maintaining a WordPress site: updates, health checks, backups, plugin and theme hygiene."
-version: 1.0.0
+version: 1.1.0
 author: Hermes Agent
 license: MIT
+compatibility: "WordPress 6.9+ (PHP 7.4+); agent with bash + node; WP-CLI for ops workflows."
 metadata:
   hermes:
     tags: [WordPress, Maintenance, HealthChecks, Backups, Hygiene]
@@ -12,6 +13,12 @@ metadata:
 # WordPress Maintenance Ops
 
 Run maintenance passes on a WordPress site through the MCP adapter: read-only health checks by default, backup-verified updates, disciplined plugin and theme hygiene.
+
+## Prerequisites
+
+- A reachable WordPress site (6.9+) with the REST API enabled (default).
+- Access via the WordPress MCP adapter (`wp plugin install mcp-adapter --activate`), WP-CLI, or the REST API. WP-CLI is expected for update and backup workflows.
+- Credentials from the environment, never inline: `WP_URL`, `WP_USER`, `WP_APP_PASSWORD` (or `WP_REST_USERNAME` / `WP_REST_PASSWORD`). Application passwords are secrets; never log or echo them.
 
 ## When to Use
 

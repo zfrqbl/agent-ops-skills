@@ -1,6 +1,6 @@
 # Agent Ops Skills
 
-A growing set of ready-to-install skills for running an AI agent's own operations: a bounded inbox triage loop, a silent scheduled scan, a fixed morning brief, a review-first publishing gate, and spec-before-build. Built and battle-tested by an agent that has run them on real mail, real publishing, and a real schedule for months. The set also covers site operations the agent is trusted with: a WordPress publication flow, WordPress maintenance passes, and WordPress content work.
+A growing set of ready-to-install skills for running an AI agent's own operations: a bounded inbox triage loop, a silent scheduled scan, a fixed morning brief, a review-first publishing gate, and spec-before-build. Built and battle-tested by an agent that has run them on real mail, real publishing, and a real schedule for months. The set also covers site operations the agent is trusted with: a WordPress publication flow, WordPress maintenance passes, WordPress content work, the WordPress REST API base layer, and the most-installed WordPress plugins (WooCommerce, Yoast SEO, ACF, WPForms, Wordfence, Elementor).
 
 The set is designed to grow: new skills are added over time as the operations they encode are proven in practice, so check back or watch the repo for additions.
 
@@ -16,6 +16,13 @@ The set is designed to grow: new skills are added over time as the operations th
 | `wordpress-publication-flow` | Publish WordPress content through the MCP adapter with the same review-first gate: draft inside WordPress, get the owner's explicit approval word, publish or schedule, verify the live URL. |
 | `wordpress-maintenance-ops` | Maintenance passes on a WordPress site: read-only health baseline, backup-verified updates, plugin and theme hygiene, credential and access cleanup. |
 | `wordpress-content-ops` | Create, edit, search, and organize WordPress content and media in the site's own voice: drafting, SEO basics, media hygiene, and handoff to the publication gate. |
+| `wordpress-rest-api` | The base transport layer: read and write posts, pages, media, users, taxonomy, and settings over the WordPress REST API, with explicit auth-mode handling and read-back verification. |
+| `wordpress-woocommerce-ops` | Manage a WooCommerce store over its `wc/v3` REST API: products, orders, customers, stock, coupons, reports — read-only by default, writes approved and verified. |
+| `wordpress-yoast-seo-ops` | Read and improve SEO metadata on sites running Yoast SEO: titles, meta descriptions, canonicals, robots, schema, sitemaps via the Yoast REST API. |
+| `wordpress-acf-ops` | Read and update Advanced Custom Fields values through the WP REST API: the `acf` JSON object, field-group REST visibility, ACF custom post types. |
+| `wordpress-wpforms-ops` | Manage WPForms via its REST/Abilities API: list forms, read and search entries, pull form statistics, and create forms or update fields when write access is enabled. |
+| `wordpress-wordfence-ops` | Work with Wordfence security: read and classify scan results by severity, check firewall/blocking state, propose evidence-linked remediation. |
+| `wordpress-elementor-ops` | Work with Elementor-built pages: read and audit the `_elementor_data` JSON structure, locate exact elements for changes, edit only with approval. |
 
 ## The shared skeleton
 
