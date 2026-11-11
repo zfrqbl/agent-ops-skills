@@ -51,10 +51,11 @@ default_targets() {
 }
 
 find_skills() {
-    # directories in the current directory that contain a SKILL.md
-    for d in */; do
+    # directories under "$1" (default: current directory) that contain a SKILL.md
+    search_dir="${1:-.}"
+    for d in "$search_dir"/*/; do
         [ -d "$d" ] || continue
-        [ -f "$d/SKILL.md" ] && printf '%s\n' "${d%/}"
+        [ -f "$d/SKILL.md" ] && printf '%s\n' "$(basename "$d")"
     done
 }
 
@@ -76,7 +77,7 @@ done
 
 # --- locate the source (a clone, or a temporary download) ---
 src_dir="$(pwd)"
-if [ -z "$(find_skills)" ]; then
+if [ -z "$(find_skills "$src_dir")" ]; then
     tmp="$(mktemp -d)" || die "could not create a temp directory"
     warn "no skills in $src_dir; downloading $REPO_NAME..."
     if ! (curl -fsSL "$TARBALL_URL" 2>/dev/null | tar xz --strip-components=1 -C "$tmp"); then
@@ -84,7 +85,7 @@ if [ -z "$(find_skills)" ]; then
         die "download failed; clone the repo and run: sh install.sh"
     fi
     src_dir="$tmp"
-    [ -n "$(find_skills)" ] || { rm -rf "$tmp"; die "no skills found in the download"; }
+    [ -n "$(find_skills "$src_dir")" ] || { rm -rf "$tmp"; die "no skills found in the download"; }
 fi
 
 # --- resolve target directories ---
@@ -104,8 +105,13 @@ else
     fi
 fi
 
+# an explicitly named target directory is created if missing
+if [ -n "$target_dir" ] && [ ! -d "$target_dir" ] && [ "$dry_run" -eq 0 ]; then
+    mkdir -p "$target_dir" || die "could not create $target_dir"
+fi
+
 # --- select skills ---
-available="$(find_skills)"
+available="$(find_skills "$src_dir")"
 skills=""
 if [ -n "$only" ]; then
     for s in $(printf '%s\n' "$only" | tr ',' ' '); do
