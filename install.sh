@@ -13,7 +13,7 @@
 #   sh install.sh --help
 #
 # One-liner:
-#   sh -c "$(curl -fsSL https://github.com/zfrqbl/agent-ops-skills/raw/main/install.sh)"
+#   sh -c "$(curl -fsSL https://github.com/zfrqbl/agent-ops-skills/raw/v0.1.0/install.sh)"
 #
 # Idempotent: an already-installed skill directory is left untouched.
 
@@ -21,8 +21,9 @@ set -u
 
 REPO_NAME="agent-ops-skills"
 REPO_URL="https://github.com/zfrqbl/agent-ops-skills"
-TARBALL_URL="$REPO_URL/archive/refs/heads/main.tar.gz"
-RAW_INSTALL_URL="$REPO_URL/raw/main/install.sh"
+# pinned to the v0.1.0 tag: branch-alias URLs can lag on raw.githubusercontent.com's CDN
+TARBALL_URL="$REPO_URL/archive/refs/tags/v0.1.0.tar.gz"
+RAW_INSTALL_URL="$REPO_URL/raw/v0.1.0/install.sh"
 
 dry_run=0
 target_dir=""

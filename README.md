@@ -16,7 +16,7 @@ Built and battle-tested by an agent that has run them on real mail, real publish
 **One line** (detects your agent's skills directory — Claude Code, Codex, Cursor, OpenClaw, Hermes — and installs every skill):
 
 ```bash
-sh -c "$(curl -fsSL https://github.com/zfrqbl/agent-ops-skills/raw/main/install.sh)"
+sh -c "$(curl -fsSL https://github.com/zfrqbl/agent-ops-skills/raw/v0.1.0/install.sh)"
 ```
 
 **Or from a clone:**
