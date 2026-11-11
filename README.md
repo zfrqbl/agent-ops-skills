@@ -1,24 +1,36 @@
 # Agent Ops Skills
 
+![GitHub Repo stars](https://img.shields.io/github/stars/zfrqbl/agent-ops-skills?style=social)
+![GitHub forks](https://img.shields.io/github/forks/zfrqbl/agent-ops-skills?style=social)
+![GitHub License](https://img.shields.io/github/license/zfrqbl/agent-ops-skills)
+![Last commit](https://img.shields.io/github/last-commit/zfrqbl/agent-ops-skills)
+
 Ready-to-install skills that let an AI agent run its own operations and a WordPress site, safely. Each one is a folder with a single `SKILL.md`: plain text, a YAML header, and a procedure that any agent that loads skills can install and run.
 
 Built and battle-tested by an agent that has run them on real mail, real publishing, and a real schedule for months. The guardrails are the point: every skill states what it refuses to do, and every workflow is idempotent, verified, and approval-gated.
 
+*See a real output shape: [redacted sample of the morning brief](docs/morning-brief-sample.md).*
+
 ## Quick start
 
-1. Clone the repo:
+**One line** (detects your agent's skills directory — Claude Code, Codex, Cursor, OpenClaw, Hermes — and installs every skill):
+
+```bash
+sh -c "$(curl -fsSL https://github.com/zfrqbl/agent-ops-skills/raw/main/install.sh)"
+```
+
+**Or from a clone:**
 
 ```bash
 git clone https://github.com/zfrqbl/agent-ops-skills
+cd agent-ops-skills
+sh install.sh                # auto-detect, install all
+sh install.sh -d /path/to/skills
+sh install.sh -s agent-ops-morning-brief,wordpress-yoast-seo-ops
+sh install.sh --dry-run      # preview without changing anything
 ```
 
-2. Copy a skill folder into your agent's skills directory. A common location is `<your agent config>/skills/<name>/`, but follow your agent's own convention:
-
-```bash
-cp -r agent-ops-skills/agent-ops-inbox-triage <your agent config>/skills/
-```
-
-3. Restart the session so the skill loads, then ask your agent to use it:
+**Or by hand:** copy a skill folder into your agent's skills directory (a common location is `<your agent config>/skills/<name>/`, but follow your agent's own convention), then restart the session and ask:
 
 ```
 Triage my inbox today.
@@ -30,6 +42,7 @@ That is the whole install. Each skill carries its own procedure, guardrails, and
 
 ```
 agent-ops-skills/
+├── install.sh                        # one-command installer (auto-detect, -d, -s, --dry-run)
 ├── agent-ops-inbox-triage/          # Turn a mailbox into a bounded queue of decisions
 ├── agent-ops-morning-brief/         # A fixed-block morning email at a fixed time
 ├── agent-ops-publishing-gate/       # Review-first publishing: publish only on explicit approval
@@ -92,7 +105,7 @@ The skills are written for any agent that can load a skill in this format: the f
 
 ## Install
 
-Each skill is a folder containing a `SKILL.md`. Install by dropping the folder into your agent's skills directory (a common location is `<your agent config>/skills/<name>/`, but follow your agent's own convention) and restarting the session, or clone this repo and point your agent at a directory containing these folders.
+`sh install.sh` detects your agent's skills directory and copies the folders in — idempotent, safe to re-run, `--dry-run` to preview. By hand: drop a skill folder into your agent's skills directory (a common location is `<your agent config>/skills/<name>/`, but follow your agent's own convention) and restart the session, or clone this repo and point your agent at a directory containing these folders.
 
 ## Design notes
 
@@ -102,10 +115,10 @@ Each skill is a folder containing a `SKILL.md`. Install by dropping the folder i
 - **No private details.** These skills describe workflows and refusals, not credentials or personal data.
 - **Original writing only.** The WordPress skills cite their research sources in `references/sources.md` but ship original procedure text; nothing is copied from Automattic or community skills.
 
-## Contributing new skills
+## Contributing
 
-New skills follow the same shared skeleton and guardrails style. Add the folder with its `SKILL.md` and list it in the table above.
+New skills follow the same shared skeleton and guardrails style. The full process — the six-part skeleton, guardrails requirements, and pull-request etiquette — is in [CONTRIBUTING.md](CONTRIBUTING.md). Bug reports, feature requests, and skill proposals have [issue templates](.github/ISSUE_TEMPLATE/). Changes are tracked in [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
-MIT. See each skill's frontmatter.
+[MIT](LICENSE). See each skill's frontmatter.
